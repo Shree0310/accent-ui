@@ -1,0 +1,132 @@
+.accent-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+  outline: none;
+  gap: 8px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Sizes */
+.accent-button--sm {
+  padding: 6px 12px;
+  font-size: 14px;
+  height: 32px;
+}
+
+.accent-button--md {
+  padding: 8px 16px;
+  font-size: 16px;
+  height: 40px;
+}
+
+.accent-button--lg {
+  padding: 10px 20px;
+  font-size: 18px;
+  height: 48px;
+}
+
+/* Variants */
+.accent-button--primary {
+  background-color: #2563eb;
+  color: white;
+}
+
+.accent-button--primary:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+.accent-button--secondary {
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+.accent-button--secondary:hover:not(:disabled) {
+  background-color: #e5e7eb;
+}
+
+.accent-button--outline {
+  background-color: transparent;
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.accent-button--outline:hover:not(:disabled) {
+  background-color: #2563eb;
+  color: white;
+}
+
+.accent-button--ghost {
+  background-color: transparent;
+  color: #2563eb;
+}
+
+.accent-button--ghost:hover:not(:disabled) {
+  background-color: #eff6ff;
+}
+
+/* States */
+.accent-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.accent-button--full-width {
+  width: 100%;
+}
+
+/* Loading state */
+.accent-button--loading {
+  cursor: wait;
+}
+
+.accent-button__loader {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.accent-button__spinner {
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+.accent-button__spinner-circle {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 50;
+  stroke-linecap: round;
+}
+
+.accent-button--loading .accent-button__content {
+  visibility: hidden;
+}
+
+/* Icons */
+.accent-button__icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.accent-button__icon--left {
+  margin-right: 4px;
+}
+
+.accent-button__icon--right {
+  margin-left: 4px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} 
