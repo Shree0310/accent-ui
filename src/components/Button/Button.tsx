@@ -1,100 +1,89 @@
-import React from 'react';
-import clsx from 'clsx';
-import './Button.css';
+import * as React from "react";
+import { cn } from "../../lib/utils";
+export type ButtonVariant = "primary" | "secondary" | "outline" | "ghost";
+export type ButtonSize = "sm" | "md" | "lg";
 
-export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost';
-export type ButtonSize = 'sm' | 'md' | 'lg';
-
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  /**
-   * The variant of the button
-   * @default 'primary'
-   */
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
-  /**
-   * The size of the button
-   * @default 'md'
-   */
   size?: ButtonSize;
-  /**
-   * Whether the button is in a loading state
-   * @default false
-   */
   loading?: boolean;
-  /**
-   * Whether the button should take up the full width of its container
-   * @default false
-   */
   fullWidth?: boolean;
-  /**
-   * The icon to display before the button text
-   */
   leftIcon?: React.ReactNode;
-  /**
-   * The icon to display after the button text
-   */
   rightIcon?: React.ReactNode;
 }
 
-export const Button: React.FC<ButtonProps> = ({
-  children,
-  className,
-  variant = 'primary',
-  size = 'md',
-  loading = false,
-  fullWidth = false,
-  leftIcon,
-  rightIcon,
-  disabled,
-  ...props
-}) => {
-  const buttonClasses = clsx(
-    'accent-button',
-    `accent-button--${variant}`,
-    `accent-button--${size}`,
-    {
-      'accent-button--loading': loading,
-      'accent-button--full-width': fullWidth,
-    },
-    className
-  );
+const variantClasses: Record<ButtonVariant, string> = {
+  primary:
+    "bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-600",
+  secondary:
+    "bg-gray-100 text-gray-900 hover:bg-gray-200 focus-visible:ring-gray-300",
+  outline:
+    "border border-blue-600 text-blue-600 bg-transparent hover:bg-blue-50 focus-visible:ring-blue-600",
+  ghost:
+    "bg-transparent text-blue-600 hover:bg-blue-50 focus-visible:ring-blue-600",
+};
 
-  return (
+const sizeClasses: Record<ButtonSize, string> = {
+  sm: "h-8 px-3 text-sm",
+  md: "h-10 px-4 text-base",
+  lg: "h-12 px-6 text-lg",
+};
+
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      className,
+      variant = "primary",
+      size = "md",
+      loading = false,
+      fullWidth = false,
+      leftIcon,
+      rightIcon,
+      disabled,
+      children,
+      ...props
+    },
+    ref
+  ) => (
     <button
-      className={buttonClasses}
+      ref={ref}
+      className={cn(
+        "inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed",
+        variantClasses[variant],
+        sizeClasses[size],
+        fullWidth && "w-full",
+        loading && "cursor-wait",
+        className
+      )}
       disabled={disabled || loading}
       {...props}
     >
       {loading && (
-        <span className="accent-button__loader">
-          <svg
-            className="accent-button__spinner"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle
-              className="accent-button__spinner-circle"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              strokeWidth="4"
-            />
-          </svg>
-        </span>
+        <svg
+          className="animate-spin mr-2 h-4 w-4 text-current"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          />
+        </svg>
       )}
       {!loading && leftIcon && (
-        <span className="accent-button__icon accent-button__icon--left">
-          {leftIcon}
-        </span>
+        <span className="mr-2">{leftIcon}</span>
       )}
-      <span className="accent-button__content">{children}</span>
+      <span>{children}</span>
       {!loading && rightIcon && (
-        <span className="accent-button__icon accent-button__icon--right">
-          {rightIcon}
-        </span>
+        <span className="ml-2">{rightIcon}</span>
       )}
     </button>
-  );
-};
+  )
+);
+
+Button.displayName = "Button";

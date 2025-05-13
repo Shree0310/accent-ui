@@ -1,0 +1,56 @@
+# Input
+
+A flexible and accessible input component for forms.
+
+## Import
+
+```jsx
+import { Input } from 'accent-ui';
+```
+
+## Usage
+
+```jsx
+<Input placeholder="Type something..." />
+<Input disabled placeholder="Disabled input" />
+<Input type="password" placeholder="Password" />
+```
+
+## Props
+
+| Prop        | Type                                   | Default   | Description                                 |
+|-------------|----------------------------------------|-----------|---------------------------------------------|
+| type        | string                                 | "text"    | The input type (text, password, email, etc) |
+| disabled    | boolean                                | false     | Whether the input is disabled               |
+| placeholder | string                                 |           | Placeholder text                            |
+| value       | string                                 |           | The input value                             |
+| className   | string                                 |           | Additional CSS classes                      |
+| ...props    | `React.InputHTMLAttributes<HTMLInputElement>` |         | All standard input props                    |
+## Examples
+
+### Basic
+
+```jsx
+<Input placeholder="Your name" />
+```
+
+### Disabled
+
+```jsx
+<Input disabled placeholder="Can't type here" />
+```
+
+### Password
+
+```jsx
+<Input type="password" placeholder="Password" />
+```
+```
+
+---
+
+**How to use:**
+- Place this file at `docs/components/input.mdx` (or wherever you keep your docs).
+- Storybook will pick it up and show it in the sidebar.
+
+Let me know if you want to add more advanced usage or custom sections!
