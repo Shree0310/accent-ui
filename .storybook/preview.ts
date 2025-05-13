@@ -3,6 +3,9 @@ import '../src/components/Button/Button.css'
 
 const preview: Preview = {
   parameters: {
+    docs: {
+      toc: true,
+    },
     controls: {
       matchers: {
        color: /(background|color)$/i,

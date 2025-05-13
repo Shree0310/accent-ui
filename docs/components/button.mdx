@@ -1,0 +1,30 @@
+# Button
+
+A versatile button component with multiple variants and states.
+
+## Import
+
+```jsx
+import { Button } from 'accent-ui';
+```
+
+## Usage
+
+```jsx
+<Button variant="primary">Primary Button</Button>
+<Button variant="secondary">Secondary Button</Button>
+<Button variant="outline">Outline Button</Button>
+<Button variant="ghost">Ghost Button</Button>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| variant | 'primary' \| 'secondary' \| 'outline' \| 'ghost' | 'primary' | The visual style of the button |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | The size of the button |
+| loading | boolean | false | Whether the button is in a loading state |
+| disabled | boolean | false | Whether the button is disabled |
+| fullWidth | boolean | false | Whether the button should take full width |
+| leftIcon | React.ReactNode | undefined | Icon to display before the button text |
+| rightIcon | React.ReactNode | undefined | Icon to display after the button text |
