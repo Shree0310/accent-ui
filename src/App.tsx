@@ -2,8 +2,17 @@ import { Button } from './components/Button';
 import './App.css';
 
 function App() {
+  const goToStorybook = () => {
+    window.location.href = 'http://localhost:6006/'; // Or your specific Storybook port
+  };
+
   return (
     <div className="button-showcase">
+      <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
+        <Button variant="primary" size="lg" onClick={goToStorybook}>
+          Go to Storybook
+        </Button>
+      </div>
       <h1>Accent UI - Button Component</h1>
       
       <section>
